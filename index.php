@@ -9,10 +9,13 @@ require_once('../twig/vendor/autoload.php');
 $loader = new FilesystemLoader('../twig/views/');
 
 $twig = new Environment($loader, array(
-    'debug' => true, // {{ dump(array|object) }}
+    'debug' => true, 
 ));
 
-$twig->addExtension(new DebugExtension());
+
+
+$twig->addExtension(new DebugExtension()); // {{ dump(array|object) }}
+
 
 echo $twig->render('index_view.php', array(
     'name' => 'alex',

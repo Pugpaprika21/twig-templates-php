@@ -21,6 +21,11 @@
 <body>
 
     <div class="container">
+
+        {{ "I like this and --that--."|replace({'this': fruit, '--that--': "oranges"}) }}
+
+        {{ max({2: "e", 1: "a", 3: "b", 5: "d", 4: "c"}) }} <!-- array -->
+
         <table class="table table-bordered">
             <thead id="user-table">
                 <tr>
@@ -45,11 +50,21 @@
                         <td><a href="views/get.php?id={{ loop.index }}">{{ user.name }}</a></td>
                     </tr>
                 {% endfor %}
+
             </tbody>
         </table>
+
+        <hr>
+
+        
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 
 </html>
+
+
+
+    
