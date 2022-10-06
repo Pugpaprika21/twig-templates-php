@@ -30,24 +30,8 @@
 
 <body>
 
-    <table>
-        <thead>
-            <tr>
-                <th>name</th>
-                <th>age</th>
-                <th>sex</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.age }}</td>
-                    <td>{{ user.sex }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+   
+
 
 </body>
 
