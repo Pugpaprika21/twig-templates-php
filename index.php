@@ -6,23 +6,76 @@ use Twig\Loader\FilesystemLoader;
 
 require_once('../twig/vendor/autoload.php');
 
-$loader = new FilesystemLoader('../twig/views/');
+class View
+{
+    #[FilesystemLoader, Environment]
+    public function __construct(
+        private FilesystemLoader $loader,
+        private Environment $twig,
+        private string $directory,
+        private array $datas = []
+    ) {
+        if (file_exists($this->directory)) {
+            $this->loader = new FilesystemLoader($this->directory);
+        }
+    }
 
-$twig = new Environment($loader, array(
-    'debug' => true, 
-));
+    #[Environment, DebugExtension]
+    public function to(array $option_set = []): object
+    {
+        $twig = new Environment($this->loader, $option_set);
+        $twig->addExtension(new DebugExtension());
+        $this->twig = $twig;
+        return $this;
+    }
+
+    public function render(string $render_path, array $array_obj): void
+    {
+        // ...'index_view.php'
+        echo $this->twig->render($render_path, $array_obj);
+    }
+}
 
 
 
-$twig->addExtension(new DebugExtension()); // {{ dump(array|object) }}
 
 
-echo $twig->render('index_view.php', array(
-    'name' => 'alex',
-    'age' => 25,
-    'users' => array(
-        array('name' => 'joe', 'age' => 24, 'sex' => 'male'),
-        array('name' => 'jim', 'age' => 18, 'sex' => 'male'),
-        array('name' => 'lisa', 'age' => 26, 'sex' => 'female')
-    )
-));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#[Environment, DebugExtension, FilesystemLoader]
+function twig(): void
+{
+    $loader = new FilesystemLoader('../twig/views/');
+
+    $twig = new Environment($loader, array(
+        'debug' => true,
+    ));
+
+    $twig->addExtension(new DebugExtension()); // {{ dump(array|object) }}
+
+    echo $twig->render('index_view.php', array(
+        'name' => 'alex',
+        'age' => 25,
+        'users' => array(
+            array('name' => 'joe', 'age' => 24, 'sex' => 'male'),
+            array('name' => 'jim', 'age' => 18, 'sex' => 'male'),
+            array('name' => 'lisa', 'age' => 26, 'sex' => 'female')
+        )
+    ));
+}
