@@ -21,20 +21,24 @@ class View
     }
 
     #[Environment, DebugExtension]
-    public function to(array $option_set = []): object
+    public function to(array $option_set = []): Environment
     {
         $twig = new Environment($this->loader, $option_set);
         $twig->addExtension(new DebugExtension());
         $this->twig = $twig;
-        return $this;
+        return $twig;
     }
-
+    /**
+     * @param string $render_path
+     * @param array $array_obj
+     * @return void
+     */
     public function render(string $render_path, array $array_obj): void
     {
-        // ...'index_view.php'
         echo $this->twig->render($render_path, $array_obj);
     }
 }
+
 
 
 
