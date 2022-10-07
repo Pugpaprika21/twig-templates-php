@@ -13,7 +13,6 @@ class View
         private FilesystemLoader $loader,
         private Environment $twig,
         private string $directory,
-        private array $datas = []
     ) {
         if (file_exists($this->directory)) {
             $this->loader = new FilesystemLoader($this->directory);
