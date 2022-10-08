@@ -47,10 +47,9 @@
                         {% elseif user.sex == 'female' %}
                             <td><span class="badge text-bg-danger">{{ user.sex }}</span></td>
                         {% endif %}
-                        <td><a href="views/get.php?id={{ loop.index }}">{{ user.name }}</a></td>
+                        <td><a href="../views/get.php?id={{ loop.index }}">{{ user.name }}</a></td>
                     </tr>
                 {% endfor %}
-
             </tbody>
         </table>
 
@@ -66,3 +65,4 @@
 
 
     
+
